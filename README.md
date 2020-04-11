@@ -1,30 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
+## My Issue
 
-## Getting Started
+I can deploy either one of my two endpoints but not BOTH:
 
-First, run the development server:
+- `pages/api/test-api.ts`
+- `pages/api/test-api-alt.ts`
 
-```bash
-npm run dev
-# or
-yarn dev
+Judging by the file size error, it seems that ALL dependencies get bundled with EVERY endpoint.
+
+Related Github discussions:
+
+- https://github.com/zeit/now/discussions/4041 (dependency polution across apis)
+- https://github.com/zeit/now/discussions/4013 (dependency polution across pages AND apis, which appears to be fixed)
+
+Zeit NOW error logs below:
+
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on ZEIT Now
-
-The easiest way to deploy your Next.js app is to use the [ZEIT Now Platform](https://zeit.co/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+9:51:12.236  Compiled successfully.
+09:51:12.236  Automatically optimizing pages...
+09:51:12.843  Page                                                           Size     First Load JS
+09:51:12.843  ┌ ○ /                                                          6.94 kB        64.9 kB
+09:51:12.843  ├ ○ /404                                                       3.15 kB        61.1 kB
+09:51:12.843  ├ λ /api/test-api
+09:51:12.843  ├ λ /api/test-api-alt
+09:51:12.843  └ λ /test-page                                                 293 B          58.2 kB
+09:51:12.843  + First Load JS shared by all                                  57.9 kB
+09:51:12.843    ├ static/pages/_app.js                                       957 B
+09:51:12.843    ├ chunks/e2e2e76c8bf507b2d0f54f2e5110e7a0e38cd0f7.92878c.js  10.3 kB
+09:51:12.843    ├ chunks/framework.0f140d.js                                 40 kB
+09:51:12.843    ├ runtime/main.7e74ef.js                                     5.95 kB
+09:51:12.843    └ runtime/webpack.b65cab.js                                  746 B
+09:51:12.844  λ  (Lambda)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
+09:51:12.844  ○  (Static)  automatically rendered as static HTML (uses no initial props)
+09:51:12.844  ●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
+09:51:12.895  Done in 7.76s.
+09:51:18.943  Traced Next.js serverless functions for external files in: 6031.273ms
+09:51:32.783  Compressed shared serverless function files: 13839.791ms
+09:51:32.947  All serverless functions created in: 162.795ms
+09:51:32.988  Error: The Serverless Function "api/test-api-alt" is 51.63mb which exceeds the maximum size limit of 50mb. Learn more: https://zeit.co/docs/v2/platform/limits#serverless-function-size
+09:51:34.613  Done with "package.json"
+```
