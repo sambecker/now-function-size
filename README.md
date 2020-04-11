@@ -1,18 +1,20 @@
 ## My Issue
 
-I can deploy either one of my two endpoints but not BOTH:
+I can deploy either of my two endpoints but not BOTH:
 
 - `pages/api/test-api.ts`
 - `pages/api/test-api-alt.ts`
 
-Judging by the file size error, it seems that ALL dependencies get bundled with EVERY endpoint.
+If I delete one of these files my app deploys succeeds. If I leave them both in, it fails.
+
+Judging by the file size error, it seems ALL dependencies get bundled with EVERY endpoint.
 
 Related Github discussions:
 
-- https://github.com/zeit/now/discussions/4041 (dependency polution across apis)
-- https://github.com/zeit/now/discussions/4013 (dependency polution across pages AND apis, which appears to be fixed)
+- https://github.com/zeit/now/discussions/4041 (dependency pollution across apis)
+- https://github.com/zeit/now/discussions/4013 (dependency pollution across pages AND apis, which appears to be fixed)
 
-Zeit NOW error logs below:
+Zeit/now error logs:
 
 ```
 9:51:12.236  Compiled successfully.
