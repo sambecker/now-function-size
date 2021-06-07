@@ -1,7 +1,7 @@
 import chrome from 'chrome-aws-lambda';
 import puppeteer from 'puppeteer-core';
 
-const isDev = true;
+const isDev = false;
 
 const LOCAL_CHROME_PATH = process.platform === 'win32'
   ? 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
