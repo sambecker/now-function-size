@@ -8,10 +8,10 @@
     "start": "next start"
   },
   "dependencies": {
-    "chrome-aws-lambda": "^2.1.1",
+    "chrome-aws-lambda": "7.0.0",
     "firebase": "^7.13.2",
     "next": "9.3.4",
-    "puppeteer-core": "^2.1.1",
+    "puppeteer-core": "7.0.0",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
